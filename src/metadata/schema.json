@@ -1,0 +1,1347 @@
+{
+    "package": "Adyen",
+    "tagline": "Adyen API",
+    "description": "Making payments easy gives you a competitive edge. Adyen\u2019s platform lets you expand quickly, manage risk, and track results \u2013 one platform, one partner, no hassle.",
+    "image": "https://logo.clearbit.com/adyen.com",
+    "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-Adyen-Package",
+    "keywords": [
+        "API",
+        "adyen",
+        "payment"
+    ],
+    "accounts": {
+        "domain": "https://adyen.com",
+        "credentials": [
+            "username",
+            "password"
+        ]
+    },
+    "steps": [
+        "Sign in https://ca-test.adyen.com/ca/ca/login.shtml",
+        "Navigate to Settings -> User",
+        "Copy your credentials"
+    ],
+    "blocks": [
+        {
+            "name": "authorise",
+            "description": "Creates a payment with a unique reference (pspReference) and attempts to obtain an authorisation hold. For cards, this amount can be captured or cancelled later. Non-card payment methods typically don't support this and will automatically capture as part of the authorisation.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "amountCurrency",
+                    "type": "String",
+                    "info": "The three-character ISO currency code.",
+                    "required": true
+                },
+                {
+                    "name": "amountValue",
+                    "type": "Number",
+                    "info": "The payable amount that can be charged for the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "bankAccountNumber",
+                    "type": "String",
+                    "info": "The bank account number (without separators).",
+                    "required": false
+                },
+                {
+                    "name": "bankCity",
+                    "type": "String",
+                    "info": "The bank city.",
+                    "required": false
+                },
+                {
+                    "name": "bankLocationId",
+                    "type": "String",
+                    "info": "The location id of the bank. The field value is nil in most cases.",
+                    "required": false
+                },
+                {
+                    "name": "bankName",
+                    "type": "String",
+                    "info": "The name of the bank.",
+                    "required": false
+                },
+                {
+                    "name": "bic",
+                    "type": "String",
+                    "info": "The Business Identifier Code (BIC) is the SWIFT address assigned to a bank. The field value is nil in most cases.",
+                    "required": false
+                },
+                {
+                    "name": "countryCode",
+                    "type": "String",
+                    "info": "Country code where the bank is located.",
+                    "required": false
+                },
+                {
+                    "name": "iban",
+                    "type": "String",
+                    "info": "The International Bank Account Number (IBAN).",
+                    "required": false
+                },
+                {
+                    "name": "ownerName",
+                    "type": "String",
+                    "info": "The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations.",
+                    "required": false
+                },
+                {
+                    "name": "taxId",
+                    "type": "String",
+                    "info": "The bank account holder's tax ID.",
+                    "required": false
+                },
+                {
+                    "name": "billingAddress",
+                    "type": "JSON",
+                    "info": "The address where to send the invoice.",
+                    "required": false
+                },
+                {
+                    "name": "browserInfo",
+                    "type": "String",
+                    "info": "The shopper's browser information.",
+                    "required": false
+                },
+                {
+                    "name": "captureDelayHours",
+                    "type": "Number",
+                    "info": "The delay between the authorisation and scheduled auto-capture, specified in hours.",
+                    "required": false
+                },
+                {
+                    "name": "card",
+                    "type": "JSON",
+                    "info": "A container for card data.",
+                    "required": true
+                },
+                {
+                    "name": "dateOfBirth",
+                    "type": "DatePicker",
+                    "info": "The shopper's date of birth.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{Y-m-d}"
+                    }
+                },
+                {
+                    "name": "dccQuote",
+                    "type": "JSON",
+                    "info": "The forex quote as returned in the response of the forex service.",
+                    "required": false
+                },
+                {
+                    "name": "deliveryAddress",
+                    "type": "JSON",
+                    "info": "The address where the purchased goods should be delivered.",
+                    "required": false
+                },
+                {
+                    "name": "deliveryDate",
+                    "type": "DatePicker",
+                    "info": "The date and time the purchased goods should be delivered.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{Y-m-d}"
+                    }
+                },
+                {
+                    "name": "deviceFingerprint",
+                    "type": "String",
+                    "info": "A string containing the shopper's device fingerprint. For more information, refer to Device fingerprinting.",
+                    "required": false
+                },
+                {
+                    "name": "entityType",
+                    "type": "String",
+                    "info": "The type of the entity the payment is processed for.",
+                    "required": false
+                },
+                {
+                    "name": "fraudOffset",
+                    "type": "String",
+                    "info": "An integer value that is added to the normal fraud score. The value can be either positive or negative.",
+                    "required": false
+                },
+                {
+                    "name": "installments",
+                    "type": "JSON",
+                    "info": "Contains installment settings. For more information, refer to Installments.",
+                    "required": false
+                },
+                {
+                    "name": "mcc",
+                    "type": "String",
+                    "info": "The merchant category code (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.",
+                    "required": false
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "merchantOrderReference",
+                    "type": "String",
+                    "info": "This reference allows linking multiple transactions to each other.",
+                    "required": false
+                },
+                {
+                    "name": "metadata",
+                    "type": "JSON",
+                    "info": "Metadata consists of entries, each of which includes a key and a value.",
+                    "required": false
+                },
+                {
+                    "name": "mpiData",
+                    "type": "JSON",
+                    "info": "Authentication data produced by an MPI (Mastercard SecureCode or Verified By Visa).",
+                    "required": false
+                },
+                {
+                    "name": "nationality",
+                    "type": "String",
+                    "info": "The two-character country code of the shopper's nationality.",
+                    "required": false
+                },
+                {
+                    "name": "orderReference",
+                    "type": "String",
+                    "info": "The order reference to link multiple partial payments.",
+                    "required": false
+                },
+                {
+                    "name": "recurring",
+                    "type": "JSON",
+                    "info": "The recurring settings for the payment. Use this property when you want to enable recurring payments.",
+                    "required": false
+                },
+                {
+                    "name": "recurringProcessingModel",
+                    "type": "Select",
+                    "options": [
+                        "Subscription",
+                        "CardOnFile"
+                    ],
+                    "info": "Defines a recurring payment type. Must be: Subscription, CardOnFile",
+                    "required": false
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status.",
+                    "required": true
+                },
+                {
+                    "name": "selectedBrand",
+                    "type": "Select",
+                    "options": [
+                        "maestro",
+                        "bcmc"
+                    ],
+                    "info": "Some payment methods require defining a value for this field to specify how to process the transaction. Must be maestro, bcmc",
+                    "required": false
+                },
+                {
+                    "name": "selectedRecurringDetailReference",
+                    "type": "String",
+                    "info": "The recurringDetailReference you want to use for this payment. The value LATEST can be used to select the most recently stored recurring detail.",
+                    "required": false
+                },
+                {
+                    "name": "sessionId",
+                    "type": "String",
+                    "info": "A session ID used to identify a payment session.",
+                    "required": false
+                },
+                {
+                    "name": "shopperEmail",
+                    "type": "String",
+                    "info": "The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks.",
+                    "required": false
+                },
+                {
+                    "name": "shopperIP",
+                    "type": "String",
+                    "info": "The shopper's IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks).",
+                    "required": false
+                },
+                {
+                    "name": "shopperInteraction",
+                    "type": "Select",
+                    "options": [
+                        "Ecommerce",
+                        "ContAuth",
+                        "Moto",
+                        "POS"
+                    ],
+                    "info": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.",
+                    "required": false
+                },
+                {
+                    "name": "shopperLocale",
+                    "type": "String",
+                    "info": "The combination of a language code and a country code to specify the language to be used in the payment.",
+                    "required": false
+                },
+                {
+                    "name": "shopperName",
+                    "type": "JSON",
+                    "info": "The shopper's full name and gender (if specified).",
+                    "required": false
+                },
+                {
+                    "name": "shopperReference",
+                    "type": "String",
+                    "info": "The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).",
+                    "required": false
+                },
+                {
+                    "name": "shopperStatement",
+                    "type": "String",
+                    "info": "The text to appear on the shopper's bank statement.",
+                    "required": false
+                },
+                {
+                    "name": "socialSecurityNumber",
+                    "type": "String",
+                    "info": "The shopper's social security number.",
+                    "required": false
+                },
+                {
+                    "name": "store",
+                    "type": "String",
+                    "info": "The physical store, for which this payment is processed.",
+                    "required": false
+                },
+                {
+                    "name": "telephoneNumber",
+                    "type": "String",
+                    "info": "The shopper's telephone number.",
+                    "required": false
+                },
+                {
+                    "name": "totalsGroup",
+                    "type": "String",
+                    "info": "The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalAmount",
+                            "additionalData",
+                            "amount",
+                            "bankAccount",
+                            "billingAddress",
+                            "browserInfo",
+                            "captureDelayHours",
+                            "card",
+                            "dateOfBirth",
+                            "dccQuote",
+                            "deliveryAddress",
+                            "deliveryDate",
+                            "deviceFingerprint",
+                            "entityType",
+                            "fraudOffset",
+                            "installments",
+                            "mcc",
+                            "merchantAccount",
+                            "merchantOrderReference",
+                            "metadata",
+                            "mpiData",
+                            "nationality",
+                            "orderReference",
+                            "recurring",
+                            "recurringProcessingModel",
+                            "reference",
+                            "selectedBrand",
+                            "selectedRecurringDetailReference",
+                            "sessionId",
+                            "shopperEmail",
+                            "shopperIP",
+                            "shopperInteraction",
+                            "shopperLocale",
+                            "shopperName",
+                            "shopperReference",
+                            "shopperStatement",
+                            "socialSecurityNumber",
+                            "store",
+                            "telephoneNumber",
+                            "totalsGroup"
+                        ]
+                    }
+                ],
+                "vendorFieldsStructure": [
+                    {
+                        "amount": {
+                            "currency": "{amountCurrency}",
+                            "value": "{amountValue}"
+                        },
+                        "bankAccount": {
+                            "bankAccountNumber": "{bankAccountNumber}",
+                            "bankCity": "{bankCity}",
+                            "bankLocationId": "{bankLocationId}",
+                            "bankName": "{bankName}",
+                            "bic": "{bic}",
+                            "countryCode": "{countryCode}",
+                            "iban": "{iban}",
+                            "ownerName": "{ownerName}",
+                            "taxId": "{taxId}"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "authorise3D",
+            "description": "For an authenticated 3D Secure session, completes the payment authorisation. This endpoint must receive the md and paResponse parameters that you get from the card issuer after a shopper pays via 3D Secure.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "amountCurrency",
+                    "type": "String",
+                    "info": "The three-character ISO currency code.",
+                    "required": false
+                },
+                {
+                    "name": "amountValue",
+                    "type": "Number",
+                    "info": "The payable amount that can be charged for the transaction.",
+                    "required": false
+                },
+                {
+                    "name": "billingAddress",
+                    "type": "JSON",
+                    "info": "The address where to send the invoice.",
+                    "required": false
+                },
+                {
+                    "name": "browserInfo",
+                    "type": "String",
+                    "info": "The shopper's browser information.",
+                    "required": false
+                },
+                {
+                    "name": "captureDelayHours",
+                    "type": "Number",
+                    "info": "The delay between the authorisation and scheduled auto-capture, specified in hours.",
+                    "required": false
+                },
+                {
+                    "name": "dateOfBirth",
+                    "type": "DatePicker",
+                    "info": "The shopper's date of birth.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{Y-m-d}"
+                    }
+                },
+                {
+                    "name": "dccQuote",
+                    "type": "JSON",
+                    "info": "The forex quote as returned in the response of the forex service.",
+                    "required": false
+                },
+                {
+                    "name": "deliveryAddress",
+                    "type": "JSON",
+                    "info": "The address where the purchased goods should be delivered.",
+                    "required": false
+                },
+                {
+                    "name": "deliveryDate",
+                    "type": "DatePicker",
+                    "info": "The date and time the purchased goods should be delivered.",
+                    "required": false,
+                    "vendorSchema": {
+                        "format": "toFormat:{Y-m-d}"
+                    }
+                },
+                {
+                    "name": "deviceFingerprint",
+                    "type": "String",
+                    "info": "A string containing the shopper's device fingerprint. For more information, refer to Device fingerprinting.",
+                    "required": false
+                },
+                {
+                    "name": "fraudOffset",
+                    "type": "String",
+                    "info": "An integer value that is added to the normal fraud score. The value can be either positive or negative.",
+                    "required": false
+                },
+                {
+                    "name": "installments",
+                    "type": "JSON",
+                    "info": "Contains installment settings. For more information, refer to Installments.",
+                    "required": false
+                },
+                {
+                    "name": "mcc",
+                    "type": "String",
+                    "info": "The merchant category code (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.",
+                    "required": false
+                },
+                {
+                    "name": "md",
+                    "type": "String",
+                    "info": "The payment session identifier returned by the card issuer.",
+                    "required": true
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "merchantOrderReference",
+                    "type": "String",
+                    "info": "This reference allows linking multiple transactions to each other.",
+                    "required": false
+                },
+                {
+                    "name": "metadata",
+                    "type": "JSON",
+                    "info": "Metadata consists of entries, each of which includes a key and a value.",
+                    "required": false
+                },
+                {
+                    "name": "orderReference",
+                    "type": "String",
+                    "info": "The order reference to link multiple partial payments.",
+                    "required": false
+                },
+                {
+                    "name": "paResponse",
+                    "type": "String",
+                    "info": "Payment authorisation response returned by the card issuer. The paResponse field holds the PaRes value received from the card issuer.",
+                    "required": true
+                },
+                {
+                    "name": "recurring",
+                    "type": "JSON",
+                    "info": "The recurring settings for the payment. Use this property when you want to enable recurring payments.",
+                    "required": false
+                },
+                {
+                    "name": "recurringProcessingModel",
+                    "type": "Select",
+                    "options": [
+                        "Subscription",
+                        "CardOnFile"
+                    ],
+                    "info": "Defines a recurring payment type. Must be: Subscription, CardOnFile",
+                    "required": false
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status.",
+                    "required": false
+                },
+                {
+                    "name": "selectedBrand",
+                    "type": "Select",
+                    "options": [
+                        "maestro",
+                        "bcmc"
+                    ],
+                    "info": "Some payment methods require defining a value for this field to specify how to process the transaction. Must be maestro, bcmc",
+                    "required": false
+                },
+                {
+                    "name": "selectedRecurringDetailReference",
+                    "type": "String",
+                    "info": "The recurringDetailReference you want to use for this payment. The value LATEST can be used to select the most recently stored recurring detail.",
+                    "required": false
+                },
+                {
+                    "name": "sessionId",
+                    "type": "String",
+                    "info": "A session ID used to identify a payment session.",
+                    "required": false
+                },
+                {
+                    "name": "shopperEmail",
+                    "type": "String",
+                    "info": "The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks.",
+                    "required": false
+                },
+                {
+                    "name": "shopperIP",
+                    "type": "String",
+                    "info": "The shopper's IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks).",
+                    "required": false
+                },
+                {
+                    "name": "shopperInteraction",
+                    "type": "Select",
+                    "options": [
+                        "Ecommerce",
+                        "ContAuth",
+                        "Moto",
+                        "POS"
+                    ],
+                    "info": "Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.",
+                    "required": false
+                },
+                {
+                    "name": "shopperLocale",
+                    "type": "String",
+                    "info": "The combination of a language code and a country code to specify the language to be used in the payment.",
+                    "required": false
+                },
+                {
+                    "name": "shopperName",
+                    "type": "JSON",
+                    "info": "The shopper's full name and gender (if specified).",
+                    "required": false
+                },
+                {
+                    "name": "shopperReference",
+                    "type": "String",
+                    "info": "The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).",
+                    "required": false
+                },
+                {
+                    "name": "shopperStatement",
+                    "type": "String",
+                    "info": "The text to appear on the shopper's bank statement.",
+                    "required": false
+                },
+                {
+                    "name": "socialSecurityNumber",
+                    "type": "String",
+                    "info": "The shopper's social security number.",
+                    "required": false
+                },
+                {
+                    "name": "store",
+                    "type": "String",
+                    "info": "The physical store, for which this payment is processed.",
+                    "required": false
+                },
+                {
+                    "name": "telephoneNumber",
+                    "type": "String",
+                    "info": "The shopper's telephone number.",
+                    "required": false
+                },
+                {
+                    "name": "totalsGroup",
+                    "type": "String",
+                    "info": "The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available).",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/authorise3d",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalAmount",
+                            "additionalData",
+                            "amount",
+                            "billingAddress",
+                            "browserInfo",
+                            "captureDelayHours",
+                            "dateOfBirth",
+                            "dccQuote",
+                            "deliveryAddress",
+                            "deliveryDate",
+                            "deviceFingerprint",
+                            "fraudOffset",
+                            "installments",
+                            "mcc",
+                            "md",
+                            "merchantAccount",
+                            "merchantOrderReference",
+                            "metadata",
+                            "orderReference",
+                            "paResponse",
+                            "recurring",
+                            "recurringProcessingModel",
+                            "reference",
+                            "selectedBrand",
+                            "selectedRecurringDetailReference",
+                            "sessionId",
+                            "shopperEmail",
+                            "shopperIP",
+                            "shopperInteraction",
+                            "shopperLocale",
+                            "shopperName",
+                            "shopperReference",
+                            "shopperStatement",
+                            "socialSecurityNumber",
+                            "store",
+                            "telephoneNumber",
+                            "totalsGroup"
+                        ]
+                    }
+                ],
+                "vendorFieldsStructure": [
+                    {
+                        "amount": {
+                            "currency": "{amountCurrency}",
+                            "value": "{amountValue}"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "name": "capture",
+            "description": "Captures the authorisation hold on a payment, returning a unique reference for this request. Usually the full authorisation amount is captured, however it's also possible to capture a smaller amount, which results in cancelling the remaining authorisation balance.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "modificationAmount",
+                    "type": "JSON",
+                    "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
+                    "required": true
+                },
+                {
+                    "name": "originalMerchantReference",
+                    "type": "String",
+                    "info": "The original merchant reference to cancel.",
+                    "required": false
+                },
+                {
+                    "name": "originalReference",
+                    "type": "String",
+                    "info": "The original pspReference of the payment to modify.",
+                    "required": true
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "Optionally, you can specify your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.",
+                    "required": false
+                },
+                {
+                    "name": "tenderReference",
+                    "type": "String",
+                    "info": "The transaction reference provided by the PED. For Point-of-sale integrations only.",
+                    "required": false
+                },
+                {
+                    "name": "uniqueTerminalId",
+                    "type": "String",
+                    "info": "Unique terminal ID for the PED that originally processed the request. For Point-of-sale integrations only.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/capture",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalData",
+                            "merchantAccount",
+                            "modificationAmount",
+                            "originalMerchantReference",
+                            "originalReference",
+                            "reference",
+                            "tenderReference",
+                            "uniqueTerminalId"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "cancel",
+            "description": "Cancels the authorisation hold on a payment, returning a unique reference for this request. You can cancel payments after authorisation only for payment methods that support distinct authorisations and captures.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "modificationAmount",
+                    "type": "JSON",
+                    "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
+                    "required": true
+                },
+                {
+                    "name": "originalMerchantReference",
+                    "type": "String",
+                    "info": "The original merchant reference to cancel.",
+                    "required": false
+                },
+                {
+                    "name": "originalReference",
+                    "type": "String",
+                    "info": "The original pspReference of the payment to modify.",
+                    "required": true
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "Optionally, you can specify your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.",
+                    "required": false
+                },
+                {
+                    "name": "tenderReference",
+                    "type": "String",
+                    "info": "The transaction reference provided by the PED. For Point-of-sale integrations only.",
+                    "required": false
+                },
+                {
+                    "name": "uniqueTerminalId",
+                    "type": "String",
+                    "info": "Unique terminal ID for the PED that originally processed the request. For Point-of-sale integrations only.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/cancel",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalData",
+                            "merchantAccount",
+                            "modificationAmount",
+                            "originalMerchantReference",
+                            "originalReference",
+                            "reference",
+                            "tenderReference",
+                            "uniqueTerminalId"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "refund",
+            "description": "Refunds a payment that has previously been captured, returning a unique reference for this request. Refunding can be done on the full captured amount or a partial amount. Multiple (partial) refunds will be accepted as long as their sum doesn't exceed the captured amount. ",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "modificationAmount",
+                    "type": "JSON",
+                    "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
+                    "required": true
+                },
+                {
+                    "name": "originalMerchantReference",
+                    "type": "String",
+                    "info": "The original merchant reference to cancel.",
+                    "required": false
+                },
+                {
+                    "name": "originalReference",
+                    "type": "String",
+                    "info": "The original pspReference of the payment to modify.",
+                    "required": true
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "Optionally, you can specify your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.",
+                    "required": false
+                },
+                {
+                    "name": "tenderReference",
+                    "type": "String",
+                    "info": "The transaction reference provided by the PED. For Point-of-sale integrations only.",
+                    "required": false
+                },
+                {
+                    "name": "uniqueTerminalId",
+                    "type": "String",
+                    "info": "Unique terminal ID for the PED that originally processed the request. For Point-of-sale integrations only.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/refund",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalData",
+                            "merchantAccount",
+                            "modificationAmount",
+                            "originalMerchantReference",
+                            "originalReference",
+                            "reference",
+                            "tenderReference",
+                            "uniqueTerminalId"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "cancelOrRefund",
+            "description": "Cancels a payment if it has not yet been captured yet, or refunds it if it has already been captured. This is useful when it is not certain if the payment has been captured or not (for example, when using auto-capture).",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "modificationAmount",
+                    "type": "JSON",
+                    "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
+                    "required": true
+                },
+                {
+                    "name": "originalMerchantReference",
+                    "type": "String",
+                    "info": "The original merchant reference to cancel.",
+                    "required": false
+                },
+                {
+                    "name": "originalReference",
+                    "type": "String",
+                    "info": "The original pspReference of the payment to modify.",
+                    "required": true
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "Optionally, you can specify your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.",
+                    "required": false
+                },
+                {
+                    "name": "tenderReference",
+                    "type": "String",
+                    "info": "The transaction reference provided by the PED. For Point-of-sale integrations only.",
+                    "required": false
+                },
+                {
+                    "name": "uniqueTerminalId",
+                    "type": "String",
+                    "info": "Unique terminal ID for the PED that originally processed the request. For Point-of-sale integrations only.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/cancelOrRefund",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalData",
+                            "merchantAccount",
+                            "modificationAmount",
+                            "originalMerchantReference",
+                            "originalReference",
+                            "reference",
+                            "tenderReference",
+                            "uniqueTerminalId"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "adjustAuthorisation",
+            "description": "Allows you to increase or decrease the authorised amount after the initial authorisation has taken place. This functionality enables tipping, improving the chances your authorisation will be valid, charging the shopper when they have already left the merchant premises, etc.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "additionalData",
+                    "type": "JSON",
+                    "info": "This field contains additional data, which may be required for a particular payment request.",
+                    "required": false
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "modificationAmount",
+                    "type": "JSON",
+                    "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
+                    "required": true
+                },
+                {
+                    "name": "originalMerchantReference",
+                    "type": "String",
+                    "info": "The original merchant reference to cancel.",
+                    "required": false
+                },
+                {
+                    "name": "originalReference",
+                    "type": "String",
+                    "info": "The original pspReference of the payment to modify.",
+                    "required": true
+                },
+                {
+                    "name": "reference",
+                    "type": "String",
+                    "info": "Optionally, you can specify your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters.",
+                    "required": false
+                },
+                {
+                    "name": "tenderReference",
+                    "type": "String",
+                    "info": "The transaction reference provided by the PED. For Point-of-sale integrations only.",
+                    "required": false
+                },
+                {
+                    "name": "uniqueTerminalId",
+                    "type": "String",
+                    "info": "Unique terminal ID for the PED that originally processed the request. For Point-of-sale integrations only.",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Payment/v30/adjustAuthorisation",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "additionalData",
+                            "merchantAccount",
+                            "modificationAmount",
+                            "originalMerchantReference",
+                            "originalReference",
+                            "reference",
+                            "tenderReference",
+                            "uniqueTerminalId"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "getRecurringDetailsList",
+            "description": "Lists the stored payment details for a shopper, if there are any available. The recurring detail ID can be used with a regular authorisation request to charge the shopper. A summary of the payment detail is returned for presentation to the shopper.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "recurring",
+                    "type": "JSON",
+                    "info": "A container for the type of a recurring contract to be retrieved.",
+                    "required": false
+                },
+                {
+                    "name": "shopperReference",
+                    "type": "String",
+                    "info": "The reference you use to uniquely identify the shopper (e.g. user ID or account ID).",
+                    "required": false
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Recurring/v25/listRecurringDetails",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "merchantAccount",
+                            "recurring",
+                            "shopperReference"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "disablesStoredPaymentDetails",
+            "description": "Disables stored payment details to stop charging a shopper with this particular recurring detail ID.",
+            "args": [
+                {
+                    "name": "username",
+                    "type": "credentials",
+                    "info": "Your username into adyen system.",
+                    "required": true,
+                    "vendorSchema": {
+                        "name": "username"
+                    }
+                },
+                {
+                    "name": "password",
+                    "type": "String",
+                    "info": "Your password.",
+                    "required": true
+                },
+                {
+                    "name": "contract",
+                    "type": "List",
+                    "info": "Specify the contract if you only want to disable a specific use. Must be: PAYOUT, RECURRING, ONECLICK",
+                    "required": false,
+                    "structure": {
+                        "name": "singleContact",
+                        "type": "Select",
+                        "options": [
+                            "ONECLICK",
+                            "RECURRING",
+                            "PAYOUT"
+                        ],
+                        "info": "Specify the contract if you only want to disable a specific use.",
+                        "required": false
+                    },
+                    "vendorSchema": {
+                        "format": "toString:{,}"
+                    }
+                },
+                {
+                    "name": "merchantAccount",
+                    "type": "String",
+                    "info": "The merchant account identifier, with which you want to process the transaction.",
+                    "required": true
+                },
+                {
+                    "name": "recurringDetailReference",
+                    "type": "String",
+                    "info": "The ID that uniquely identifies the recurring detail reference.",
+                    "required": false
+                },
+                {
+                    "name": "shopperReference",
+                    "type": "String",
+                    "info": "The reference you use to uniquely identify the shopper (e.g. user ID or account ID).",
+                    "required": true
+                }
+            ],
+            "vendorRequest": {
+                "auth": {
+                    "username": "{$data['username']}",
+                    "password": "{$data['password']}"
+                },
+                "url": "https://pal-test.adyen.com/pal/servlet/Recurring/v25/listRecurringDetails",
+                "method": "post",
+                "requestParameters": [
+                    {
+                        "type": "json",
+                        "parameters": [
+                            "contract",
+                            "merchantAccount",
+                            "recurringDetailReference",
+                            "shopperReference"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
