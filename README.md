@@ -30,7 +30,7 @@ Creates a payment with a unique reference (pspReference) and attempts to obtain 
 | ownerName                       | String     | The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations.
 | taxId                           | String     | The bank account holder's tax ID.
 | billingAddress                  | JSON       | The address where to send the invoice.
-| browserInfo                     | JSON**     | The shopper's browser information.
+| browserInfo                     | JSON     | The shopper's browser information.
 | captureDelayHours               | Number     | The delay between the authorisation and scheduled auto-capture, specified in hours.
 | card                            | JSON       | A container for card data.
 | dateOfBirth                     | DatePicker | The shopper's date of birth.

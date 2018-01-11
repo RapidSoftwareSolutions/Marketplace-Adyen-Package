@@ -1059,7 +1059,7 @@
                     "name": "modificationAmount",
                     "type": "JSON",
                     "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
-                    "required": true
+                    "required": false
                 },
                 {
                     "name": "originalMerchantReference",
