@@ -135,7 +135,7 @@
                     "name": "card",
                     "type": "JSON",
                     "info": "A container for card data.",
-                    "required": true
+                    "required": false
                 },
                 {
                     "name": "dateOfBirth",
@@ -454,13 +454,13 @@
                     "name": "amountCurrency",
                     "type": "String",
                     "info": "The three-character ISO currency code.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "amountValue",
                     "type": "Number",
                     "info": "The payable amount that can be charged for the transaction.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "billingAddress",
@@ -590,7 +590,7 @@
                     "name": "reference",
                     "type": "String",
                     "info": "The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status.",
-                    "required": false
+                    "required": true
                 },
                 {
                     "name": "selectedBrand",
@@ -783,7 +783,7 @@
                     "name": "modificationAmount",
                     "type": "JSON",
                     "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
-                    "required": true
+                    "required": false
                 },
                 {
                     "name": "originalMerchantReference",
@@ -967,7 +967,7 @@
                     "name": "modificationAmount",
                     "type": "JSON",
                     "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
-                    "required": true
+                    "required": false
                 },
                 {
                     "name": "originalMerchantReference",
@@ -1151,7 +1151,7 @@
                     "name": "modificationAmount",
                     "type": "JSON",
                     "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
-                    "required": true
+                    "required": false
                 },
                 {
                     "name": "originalMerchantReference",
@@ -1243,7 +1243,7 @@
                     "name": "shopperReference",
                     "type": "String",
                     "info": "The reference you use to uniquely identify the shopper (e.g. user ID or account ID).",
-                    "required": false
+                    "required": true
                 }
             ],
             "vendorRequest": {
