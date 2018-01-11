@@ -121,7 +121,7 @@
                 },
                 {
                     "name": "browserInfo",
-                    "type": "String",
+                    "type": "JSON",
                     "info": "The shopper's browser information.",
                     "required": false
                 },
@@ -181,7 +181,7 @@
                 },
                 {
                     "name": "fraudOffset",
-                    "type": "String",
+                    "type": "Number",
                     "info": "An integer value that is added to the normal fraud score. The value can be either positive or negative.",
                     "required": false
                 },
@@ -470,7 +470,7 @@
                 },
                 {
                     "name": "browserInfo",
-                    "type": "String",
+                    "type": "JSON",
                     "info": "The shopper's browser information.",
                     "required": false
                 },
@@ -518,7 +518,7 @@
                 },
                 {
                     "name": "fraudOffset",
-                    "type": "String",
+                    "type": "Number",
                     "info": "An integer value that is added to the normal fraud score. The value can be either positive or negative.",
                     "required": false
                 },
@@ -875,7 +875,7 @@
                     "name": "modificationAmount",
                     "type": "JSON",
                     "info": "The amount that needs to be captured/refunded. Required for /capture and /refund, not allowed for /cancel. The currency must match the currency used in authorisation, the value must be smaller than or equal to the authorised amount.",
-                    "required": true
+                    "required": false
                 },
                 {
                     "name": "originalMerchantReference",

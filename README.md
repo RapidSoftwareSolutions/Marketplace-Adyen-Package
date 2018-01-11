@@ -30,7 +30,7 @@ Creates a payment with a unique reference (pspReference) and attempts to obtain 
 | ownerName                       | String     | The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations.
 | taxId                           | String     | The bank account holder's tax ID.
 | billingAddress                  | JSON       | The address where to send the invoice.
-| browserInfo                     | String     | The shopper's browser information.
+| browserInfo                     | JSON**     | The shopper's browser information.
 | captureDelayHours               | Number     | The delay between the authorisation and scheduled auto-capture, specified in hours.
 | card                            | JSON       | A container for card data.
 | dateOfBirth                     | DatePicker | The shopper's date of birth.
@@ -39,7 +39,7 @@ Creates a payment with a unique reference (pspReference) and attempts to obtain 
 | deliveryDate                    | DatePicker | The date and time the purchased goods should be delivered.
 | deviceFingerprint               | String     | A string containing the shopper's device fingerprint. For more information, refer to Device fingerprinting.
 | entityType                      | String     | The type of the entity the payment is processed for.
-| fraudOffset                     | String     | An integer value that is added to the normal fraud score. The value can be either positive or negative.
+| fraudOffset                     | Number     | An integer value that is added to the normal fraud score. The value can be either positive or negative.
 | installments                    | JSON       | Contains installment settings. For more information, refer to Installments.
 | mcc                             | String     | The merchant category code (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
 | merchantAccount                 | String     | The merchant account identifier, with which you want to process the transaction.
@@ -77,14 +77,14 @@ For an authenticated 3D Secure session, completes the payment authorisation. Thi
 | amountCurrency                  | String     | The three-character ISO currency code.
 | amountValue                     | Number     | The payable amount that can be charged for the transaction.
 | billingAddress                  | JSON       | The address where to send the invoice.
-| browserInfo                     | String     | The shopper's browser information.
+| browserInfo                     | JSON     | The shopper's browser information.
 | captureDelayHours               | Number     | The delay between the authorisation and scheduled auto-capture, specified in hours.
 | dateOfBirth                     | DatePicker | The shopper's date of birth.
 | dccQuote                        | JSON       | The forex quote as returned in the response of the forex service.
 | deliveryAddress                 | JSON       | The address where the purchased goods should be delivered.
 | deliveryDate                    | DatePicker | The date and time the purchased goods should be delivered.
 | deviceFingerprint               | String     | A string containing the shopper's device fingerprint. For more information, refer to Device fingerprinting.
-| fraudOffset                     | String     | An integer value that is added to the normal fraud score. The value can be either positive or negative.
+| fraudOffset                     | Number     | An integer value that is added to the normal fraud score. The value can be either positive or negative.
 | installments                    | JSON       | Contains installment settings. For more information, refer to Installments.
 | mcc                             | String     | The merchant category code (MCC) is a four-digit number, which relates to a particular market segment. This code reflects the predominant activity that is conducted by the merchant.
 | md                              | String     | The payment session identifier returned by the card issuer.
